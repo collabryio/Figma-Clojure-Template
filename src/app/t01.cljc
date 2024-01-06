@@ -45,13 +45,66 @@
             (inc (ffirst (dt/q '[:find (max ?id)
                                  :where [_ :form/id ?id]] db))))))
 #?(:cljs (defn test-form []
-           [:link
-            {:href "https://fonts.googleapis.com/css?family=Roboto&display=swap",
-             :rel  "stylesheet"}]
+
+           [:div
+            {:class "container text-center"}
+            [:div
+             {:class "row align-items-start"}
+             [:div {:class "col"} ]
+             [:div {:class "col"}
+                                 ;;Card Tanımı
+                                  [:div
+                                   {:class "card"}
+                                   [:div
+                                    {:class "card-body"}
+                                    [:h5 {:class "card-title"} "CMS"]
+                                   ;;Form Tanımı
+                                    [:form
+                                     [:div
+                                      {:class "mb-3"}
+                                      [:label
+                                       {:for "Usernameinput", :class "form-label"}
+                                       "Username"]
+                                      [:input
+                                       {:type "text",
+                                        :class "form-control",
+                                        :onChange (fn [v] (swap! !state-form assoc-in [:credentials :username] (empty->nil (.substr (.. v -target -value) 0 100))))
+                                        :id "Usernameinput",
+                                        }]
+                                    ]
+                                     [:div
+                                      {:class "mb-3"}
+                                      [:label
+                                       {:for "Usernamepassword", :class "form-label"}
+                                       "Password"]
+                                      [:input
+                                       {:type "password",
+                                        :class "form-control",
+                                        :onChange (fn [v] (swap! !state-form assoc-in [:credentials :password] (empty->nil (.substr (.. v -target -value) 0 100))))
+                                        :id "Usernamepassword"}]]
+
+                                  ;;Button tanımı
+                                     [:button {:type "submit",
+                                               :class "btn btn-primary"
+                                               :onClick (fn [] (swap! !state-form assoc-in [:login-button] true))
+                                               } "Login"]
+                                     ]
+                                    ]
+                                   ]
+              ]
+             [:div {:class "col"}
+              ]]]
+
+
+
+
+
+           #_([:link
+              {:href "https://fonts.googleapis.com/css?family=Roboto&display=swap",
+               :rel  "stylesheet"}]
            [:link
             {:href "https://fonts.googleapis.com/css?family=Inter&display=swap",
              :rel  "stylesheet"}]
-           [:link {:href "C:\\Users\\amibroker\\Desktop\\clj-study\\study-electric\\material-ui-test\\src\\app\\main.css", :rel "stylesheet"}]
            [:title "Document"]
            [:div
             {:class "v2_4"}
@@ -69,7 +122,20 @@
             [:input {:class "v2_14" :placeholder "username" :onChange (fn [v] (swap! !state-form assoc-in [:credentials :username] (empty->nil (.substr (.. v -target -value) 0 100))))}]
 
             [:div {:class "v2_16"}]
-            [:input {:class "v2_16" :placeholder "* * * * * *" :onChange (fn [v] (swap! !state-form assoc-in [:credentials :password] (empty->nil (.substr (.. v -target -value) 0 100))))}]]))
+            [:input {:class "v2_16" :placeholder "* * * * * *" :onChange (fn [v] (swap! !state-form assoc-in [:credentials :password] (empty->nil (.substr (.. v -target -value) 0 100))))}]
+            ])
+
+           #_[:button {:class "btn" :onClick (fn [] (r/as-element [:div
+                                                                 {:class "alert alert-primary", :role "alert"}
+                                                                 "A simple primary alert—check it out!"]))}]
+
+           #_[:div
+              {:class "alert alert-primary", :role "alert"}
+            "A simple primary alert—check it out!"]
+
+
+
+           ))
 
 (e/defn Login []
   (e/server

@@ -3,7 +3,7 @@
 
 
 (def client (d/client {:server-type :dev-local
-                       :storage-dir "C:\\Users\\amibroker\\Desktop\\clj-study\\study-electric\\form-template\\form-db"
+                       :storage-dir "/Users/ahmetoguzhanengin/Desktop/Student-Registration-Electric/form-template/form-db"
                        :system      "ci"}))
 
 #_(d/create-database client {:db-name "form"})
